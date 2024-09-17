@@ -1,0 +1,4 @@
+SetEnv _JENV_DB_HOST localhost
+SetEnv _JENV_DB_USER postgres
+SetEnv _JENV_DB_PASSWORD tuapasswordlocale
+SetEnv _JENV_DB_NAME joomla_db

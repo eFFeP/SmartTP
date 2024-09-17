@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="template" client="site">
+    <name>SmartTP Login Template</name>
+    <version>1.0</version>
+    <creationDate>Settembre 2024</creationDate>
+    <author>PS Design</author>
+    <authorEmail>info@pellegrini.biz</authorEmail>
+    <copyright>Copyright (C) 2024 PS Design. Tutti i diritti riservati.</copyright>
+    <description>Un template Joomla personalizzato per la pagina di login di SmartTP</description>
+      <files>
+        <filename>index.php</filename>
+        <filename>templateDetails.xml</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>images</folder>
+        <folder>language</folder>
+    </files>
+    <languages folder="language">
+        <language tag="it-IT">it-IT/it-IT.tpl_smarttp.ini</language>
+        <language tag="en-GB">en-GB/en-GB.tpl_smarttp.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.tpl_smarttp.ini</language>
+        <language tag="de-DE">de-DE/de-DE.tpl_smarttp.ini</language>
+    </languages>
+    <positions>
+        <position>logo</position>
+        <position>login</position>
+        <position>language</position>
+        <position>footer</position>
+    </positions>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="logoFile"
+                    type="media"
+                    label="Logo"
+                    description="Seleziona o carica un logo per il tuo sito"
+                />
+                <field
+                    name="siteTitle"
+                    type="text"
+                    default="SmartTP"
+                    label="Titolo del sito"
+                    description="Inserisci il titolo del tuo sito"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

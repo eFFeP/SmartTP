@@ -1,0 +1,119 @@
+:root {
+    --accent-color: rgb(68,145,170);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('sfondo01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.lang-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.lang-icon {
+    width: 36px; /* Ridotto del 10% da 40px */
+    height: 36px; /* Ridotto del 10% da 40px */
+    border-radius: 50%;
+    border: none;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em; /* Ridotto leggermente il font size */
+}
+
+.lang-icon:hover {
+    background-color: #e0e0e0;
+}
+
+.lang-icon.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.logo {
+    max-width: 320px; /* Ridotto del 20% da 400px */
+    width: 100%;
+    display: block;
+    margin: 40px auto 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgba(68,145,170,0.8);
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.links a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.ps-design {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .logo {
+        max-width: 240px; /* Ridotto proporzionalmente per dispositivi mobili */
+        margin-top: 30px;
+    }
+}

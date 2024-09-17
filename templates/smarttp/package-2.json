@@ -1,0 +1,8 @@
+{
+  "name": "joomla-project",
+  "version": "1.0.0",
+  "description": "Joomla project on Render",
+  "scripts": {
+    "start": "vendor/bin/heroku-php-apache2"
+  }
+}
