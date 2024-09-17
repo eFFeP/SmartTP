@@ -1,0 +1,10 @@
+configuration.php
+/administrator/cache/*
+/cache/*
+/logs/*
+/tmp/*
+.htaccess/administrator/cache/*
+/cache/*
+/tmp/*
+/logs/*
+.htaccess
