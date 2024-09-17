@@ -8,3 +8,4 @@ configuration.php
 /tmp/*
 /logs/*
 .htaccess
+.DS_Store
