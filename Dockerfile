@@ -25,6 +25,9 @@ COPY . /var/www/html/
 # Copia il file di configurazione per Render
 COPY configuration.php.render /var/www/html/configuration.php
 
+# Copia il file di test
+COPY test.php /var/www/html/test.php
+
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
     chmod -R 755 /var/www/html && \
