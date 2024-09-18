@@ -1,24 +1,27 @@
 <?php
 class JConfig {
+    public $offline = false;
+    public $offline_message = 'Sito fuori servizio per manutenzione.<br> Riprovare più tardi.';
+    public $display_offline_message = 1;
+    public $offline_image = '';
+    public $sitename = 'Smart TP';
+    public $editor = 'tinymce';
+    public $captcha = '0';
+    public $list_limit = 20;
+    public $access = 1;
+    public $debug = false;
+    public $debug_lang = false;
+    public $debug_lang_const = true;
     public $dbtype = 'pgsql';
     public $host = '';
     public $user = '';
     public $password = '';
     public $db = '';
     public $dbprefix = 'x6uws_';
-    public $debug = true;
-    public $error_reporting = 'maximum';
-
-    public $dbencryption = 0;
-    public $dbsslverifyservercert = false;
-    public $dbsslkey = '';
-    public $dbsslcert = '';
-    public $dbsslca = '';
-    public $dbsslcipher = '';
-    public $force_ssl = 0;
     public $live_site = '';
     public $secret = 'IRY7tu651dfHs2xM';
     public $gzip = false;
+    public $error_reporting = 'default';
     public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
     public $offset = 'UTC';
     public $mailonline = true;
@@ -46,29 +49,20 @@ class JConfig {
     public $unicodeslugs = false;
     public $feed_limit = 10;
     public $feed_email = 'none';
-    public $log_path = '/tmp/joomla_logs';
+    public $log_path = '/var/www/html/administrator/logs';
     public $tmp_path = '/var/www/html/tmp';
     public $lifetime = 15;
     public $session_handler = 'database';
     public $shared_session = false;
-    public $session_metadata = true;
-  public function __construct() {
+
+    public function __construct() {
         $db_url = getenv('DB_HOST');
         if ($db_url) {
             $url_parts = parse_url($db_url);
             $this->host = $url_parts['host'];
-            $this->user = $url_parts['user'];
-            $this->password = $url_parts['pass'];
-            $this->db = ltrim($url_parts['path'], '/');
+            $this->user = getenv('DB_USER') ?: $url_parts['user'];
+            $this->password = getenv('DB_PASSWORD') ?: $url_parts['pass'];
+            $this->db = getenv('DB_NAME') ?: ltrim($url_parts['path'], '/');
         }
-
-        $this->user = getenv('DB_USER') ?: $this->user;
-        $this->password = getenv('DB_PASSWORD') ?: $this->password;
-        $this->db = getenv('DB_NAME') ?: $this->db;
-
-        // Stampa le variabili d'ambiente per debug
-        error_log("DB_HOST: " . getenv('DB_HOST'));
-        error_log("DB_USER: " . getenv('DB_USER'));
-        error_log("DB_NAME: " . getenv('DB_NAME'));
     }
 }

@@ -1,17 +1,4 @@
 <?php
-if (getenv('DB_HOST') !== false) {
-    define('DB_HOST', getenv('DB_HOST'));
-}
-if (getenv('DB_USER') !== false) {
-    define('DB_USER', getenv('DB_USER'));
-}
-if (getenv('DB_PASSWORD') !== false) {
-    define('DB_PASSWORD', getenv('DB_PASSWORD'));
-}
-if (getenv('DB_NAME') !== false) {
-    define('DB_NAME', getenv('DB_NAME'));
-}
-
 /**
  * @package    Joomla.Site
  *
@@ -32,11 +19,43 @@ if (version_compare(PHP_VERSION, JOOMLA_MINIMUM_PHP, '<')) {
     );
 }
 
+// Saves the start time and memory usage.
+$startTime = microtime(1);
+$startMem  = memory_get_usage();
+
 /**
  * Constant that is checked in included files to prevent direct access.
  * define() is used rather than "const" to not error for PHP 5.2 and lower
  */
 define('_JEXEC', 1);
 
-// Run the application - All executable code should be triggered through this file
-require_once dirname(__FILE__) . '/includes/app.php';
+if (file_exists(__DIR__ . '/defines.php')) {
+    include_once __DIR__ . '/defines.php';
+}
+
+if (!defined('_JDEFINES')) {
+    define('JPATH_BASE', __DIR__);
+    require_once JPATH_BASE . '/includes/defines.php';
+}
+
+require_once JPATH_BASE . '/includes/framework.php';
+
+// Set profiler start time and memory usage and mark afterLoad in the profiler.
+JDEBUG ? \Joomla\CMS\Profiler\Profiler::getInstance('Application')->setStart($startTime, $startMem)->mark('afterLoad') : null;
+
+// Boot the DI container
+$container = \Joomla\CMS\Factory::getContainer();
+
+/*
+ * Here we are adding the dependency injection container and the application
+ * instance to the JFactory class. This allows us to use it in our application.
+ */
+\Joomla\CMS\Factory::$container = $container;
+
+$app = $container->get(\Joomla\CMS\Application\SiteApplication::class);
+
+// Set the application as global app
+\Joomla\CMS\Factory::$application = $app;
+
+// Execute the application
+$app->execute();
