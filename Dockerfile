@@ -27,16 +27,11 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 # Configura PHP per Joomla
-RUN echo "upload_max_filesize = 64M" >> 
-/usr/local/etc/php/conf.d/joomla.ini \
-    && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/joomla.ini 
-\
-    && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/joomla.ini 
-\
-    && echo "max_execution_time = 300" >> 
-/usr/local/etc/php/conf.d/joomla.ini \
-    && echo "max_input_vars = 3000" >> 
-/usr/local/etc/php/conf.d/joomla.ini
+RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
+    && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
+    && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/joomla.ini \
+    && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/joomla.ini \
+    && echo "max_input_vars = 3000" >> /usr/local/etc/php/conf.d/joomla.ini
 
 # Esponi la porta 80
 EXPOSE 80
