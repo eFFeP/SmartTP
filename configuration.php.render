@@ -1,22 +1,13 @@
 <?php
 class JConfig {
-    public $offline = false;
-    public $offline_message = 'Sito fuori servizio per manutenzione.<br> Riprovare più tardi.';
-    public $display_offline_message = 1;
-    public $offline_image = '';
-    public $sitename = 'Smart TP';
-    public $editor = 'tinymce';
-    public $captcha = '0';
-    public $list_limit = 20;
-    public $access = 1;
-    public $debug = false;
-    public $error_reporting = 'default';
     public $dbtype = 'pgsql';
     public $host = '';
     public $user = '';
     public $password = '';
     public $db = '';
     public $dbprefix = 'x6uws_';
+    public $debug = true;
+    public $error_reporting = 'maximum';
 
     public $dbencryption = 0;
     public $dbsslverifyservercert = false;
@@ -61,7 +52,7 @@ class JConfig {
     public $session_handler = 'database';
     public $shared_session = false;
     public $session_metadata = true;
-    public function __construct() {
+  public function __construct() {
         $db_url = getenv('DB_HOST');
         if ($db_url) {
             $url_parts = parse_url($db_url);
@@ -71,7 +62,13 @@ class JConfig {
             $this->db = ltrim($url_parts['path'], '/');
         }
 
-        // Usa il valore corretto di DB_NAME
+        $this->user = getenv('DB_USER') ?: $this->user;
+        $this->password = getenv('DB_PASSWORD') ?: $this->password;
         $this->db = getenv('DB_NAME') ?: $this->db;
+
+        // Stampa le variabili d'ambiente per debug
+        error_log("DB_HOST: " . getenv('DB_HOST'));
+        error_log("DB_USER: " . getenv('DB_USER'));
+        error_log("DB_NAME: " . getenv('DB_NAME'));
     }
 }
