@@ -25,6 +25,9 @@ COPY . /var/www/html/
 # Copia il file di configurazione per Render
 COPY configuration.php.render /var/www/html/configuration.php
 
+# Copia il file phpinfo.php
+COPY phpinfo.php /var/www/html/phpinfo.php
+
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
     chmod -R 755 /var/www/html && \
@@ -39,7 +42,7 @@ RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_input_vars = 3000" >> /usr/local/etc/php/conf.d/joomla.ini
 
 # Imposta la variabile d'ambiente PORT
-ENV PORT 80
+ENV PORT 10000
 
 # Esponi la porta
 EXPOSE $PORT
