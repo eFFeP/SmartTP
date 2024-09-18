@@ -10,7 +10,7 @@ class JConfig {
     public $list_limit = 20;
     public $access = 1;
     public $debug = true;
-    public $error_reporting = 'maximum';
+    public $log_path = '/tmp/joomla_logs';
     public $debug_lang = false;
     public $debug_lang_const = true;
     public $dbtype = 'pgsql';
@@ -74,10 +74,10 @@ class JConfig {
             $this->db = ltrim($url_parts['path'], '/');
         }
 
-        // Abilita il logging degli errori
+        // Configurazione del reporting degli errori
+        error_reporting(E_ALL);
         ini_set('display_errors', 1);
         ini_set('log_errors', 1);
-        error_reporting(E_ALL);
         ini_set('error_log', '/tmp/php_errors.log');
     }
 }

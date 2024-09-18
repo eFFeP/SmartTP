@@ -29,9 +29,9 @@ COPY configuration.php.render /var/www/html/configuration.php
 COPY test.php /var/www/html/test.php
 
 # Crea le cartelle necessarie e imposta i permessi
-RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
-    chmod -R 755 /var/www/html && \
-    chown -R www-data:www-data /var/www/html && \
+RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language /tmp/joomla_logs && \
+    chmod -R 755 /var/www/html /tmp/joomla_logs && \
+    chown -R www-data:www-data /var/www/html /tmp/joomla_logs && \
     chmod 644 /var/www/html/configuration.php
 
 # Configura PHP per Joomla
@@ -49,6 +49,9 @@ EXPOSE $PORT
 
 # Configura Apache per usare la porta specificata
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+
+# Assicurati che mod_php sia abilitato
+RUN a2enmod php
 
 # Avvia Apache in foreground
 CMD ["apache2-foreground"]
