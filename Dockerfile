@@ -27,8 +27,9 @@ COPY configuration.php.render /var/www/html/configuration.php
 
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
-    chmod -R 755 /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
-    chown -R www-data:www-data /var/www/html
+    chmod -R 755 /var/www/html && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod 644 /var/www/html/configuration.php
 
 # Configura PHP per Joomla
 RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
@@ -46,9 +47,9 @@ EXPOSE $PORT
 # Configura Apache per usare la porta specificata
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
-# Avvia Apache in foreground
 # Abilita il display degli errori per il debug
 RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-CMD ["apache2-foreground"]
 
+# Avvia Apache in foreground
+CMD ["apache2-foreground"]

@@ -68,5 +68,7 @@ class JConfig {
         $this->user = getenv('DB_USER') ?: '';
         $this->password = getenv('DB_PASSWORD') ?: '';
         $this->db = getenv('DB_NAME') ?: '';
+    public $debug = true;
+public $error_reporting = 'maximum';
     }
 }
