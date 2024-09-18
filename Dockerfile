@@ -25,8 +25,8 @@ COPY . /var/www/html/
 # Copia il file di configurazione per Render
 COPY configuration.php.render /var/www/html/configuration.php
 
-# Copia il file phpinfo.php
-COPY phpinfo.php /var/www/html/phpinfo.php
+# Crea un file phpinfo.php direttamente nel container
+RUN echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
