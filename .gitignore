@@ -3,7 +3,6 @@ configuration.php
 /cache/*
 /logs/*
 /tmp/*
-.htaccess/administrator/cache/*
 /cache/*
 /tmp/*
 /logs/*
