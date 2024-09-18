@@ -11,7 +11,7 @@ class JConfig {
     public $offline_message = 'Sito fuori servizio per manutenzione.<br> Riprovare più tardi.';
     public $display_offline_message = 1;
     public $offline_image = '';
-    public $sitename = 'Smart TP';
+    public $sitename = 'inserire nome sito';
     public $editor = 'tinymce';
     public $captcha = '0';
     public $list_limit = 20;
@@ -24,7 +24,7 @@ class JConfig {
     public $password;
     public $db;
     public $dbtype = 'pgsql';
-    public $dbprefix = 'x6uws_';
+    public $dbprefix = 'inserire prefisso';
     public $dbencryption = 0;
     public $dbsslverifyservercert = false;
     public $dbsslkey = '';
@@ -33,14 +33,14 @@ class JConfig {
     public $dbsslcipher = '';
     public $force_ssl = 0;
     public $live_site = '';
-    public $secret = 'IRY7tu651dfHs2xM';
+    public $secret = 'inserire segreto';
     public $gzip = false;
     public $error_reporting = 'default';
     public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
     public $offset = 'UTC';
     public $mailonline = true;
     public $mailer = 'mail';
-    public $mailfrom = 'fabrizio@pellegrini.biz';
+    public $mailfrom = 'inserire mail';
     public $fromname = 'Smart TP';
     public $sendmail = '/usr/sbin/sendmail';
     public $smtpauth = false;
@@ -74,7 +74,7 @@ class JConfig {
         global $dbHost, $dbUser, $dbPassword, $dbName;
         $this->host = $dbHost ?: 'localhost';
         $this->user = $dbUser ?: 'postgres';
-        $this->password = $dbPassword ?: 'Moni140585??';
-        $this->db = $dbName ?: 'joomla_db';
+        $this->password = $dbPassword ?: 'inserire password db';
+        $this->db = $dbName ?: 'nome db';
     }
 }
