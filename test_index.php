@@ -5,16 +5,19 @@ error_reporting(E_ALL);
 
 echo "Test PHP funzionante<br>";
 
-// Test connessione al database PostgreSQL
-$host = getenv('DB_HOST');
-$user = getenv('DB_USER');
-$password = getenv('DB_PASSWORD');
-$db = getenv('DB_NAME');
-$port = getenv('DB_PORT') ?: 5432;
+// Analizza la stringa di connessione PostgreSQL
+$db_url = getenv('DB_HOST');
+$url_parts = parse_url($db_url);
+
+$host = $url_parts['host'];
+$port = $url_parts['port'] ?? 5432;
+$user = $url_parts['user'];
+$password = $url_parts['pass'];
+$dbname = ltrim($url_parts['path'], '/');
 
 echo "Tentativo di connessione al database PostgreSQL...<br>";
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$db;user=$user;password=$password";
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password";
 
 try {
     $pdo = new PDO($dsn);

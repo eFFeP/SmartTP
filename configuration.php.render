@@ -14,7 +14,7 @@ class JConfig {
     public $log_everything = true;
     public $debug_lang = false;
     public $debug_lang_const = true;
-      public $dbtype = 'pgsql';
+    public $dbtype = 'pgsql';
     public $host = '';
     public $user = '';
     public $password = '';
@@ -64,12 +64,15 @@ class JConfig {
     public $session_handler = 'database';
     public $shared_session = false;
     public $session_metadata = true;
-
-   public function __construct() {
-        $this->host = getenv('DB_HOST') ?: '';
-        $this->user = getenv('DB_USER') ?: '';
-        $this->password = getenv('DB_PASSWORD') ?: '';
-        $this->db = getenv('DB_NAME') ?: '';
+    public function __construct() {
+        $db_url = getenv('DB_HOST');
+        if ($db_url) {
+            $url_parts = parse_url($db_url);
+            $this->host = $url_parts['host'];
+            $this->user = $url_parts['user'];
+            $this->password = $url_parts['pass'];
+            $this->db = ltrim($url_parts['path'], '/');
+        }
 
         // Configurazione dell'error reporting
         error_reporting(E_ALL);
