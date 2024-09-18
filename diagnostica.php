@@ -45,6 +45,10 @@ if (file_exists('configuration.php')) {
 // Verifica la connessione al database
 if (isset($config)) {
     echo "Tentativo di connessione al database:<br>";
+    echo "Host: " . $config->host . "<br>";
+    echo "Database: " . $config->db . "<br>";
+    echo "Utente: " . $config->user . "<br>";
+    echo "DSN: {$config->dbtype}:host={$config->host};dbname={$config->db};port=" . getenv('DB_PORT') . "<br>";
     try {
         $dsn = "{$config->dbtype}:host={$config->host};dbname={$config->db};port=" . getenv('DB_PORT');
         $pdo = new PDO($dsn, $config->user, $config->password);

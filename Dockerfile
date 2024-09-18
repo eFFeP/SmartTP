@@ -25,8 +25,8 @@ COPY . /var/www/html/
 # Copia il file di configurazione per Render
 COPY configuration.php.render /var/www/html/configuration.php
 
-# Copia il file di diagnostica
-COPY diagnostica.php /var/www/html/diagnostica.php
+# Copia il file di log degli errori
+COPY error_log.php /var/www/html/error_log.php
 
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
