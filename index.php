@@ -1,15 +1,15 @@
 <?php
-if (getenv('_JENV_DB_HOST') !== false) {
-    define('_JENV_DB_HOST', getenv('_JENV_DB_HOST'));
+if (getenv('DB_HOST') !== false) {
+    define('DB_HOST', getenv('DB_HOST'));
 }
-if (getenv('_JENV_DB_USER') !== false) {
-    define('_JENV_DB_USER', getenv('_JENV_DB_USER'));
+if (getenv('DB_USER') !== false) {
+    define('DB_USER', getenv('DB_USER'));
 }
-if (getenv('_JENV_DB_PASSWORD') !== false) {
-    define('_JENV_DB_PASSWORD', getenv('_JENV_DB_PASSWORD'));
+if (getenv('DB_PASSWORD') !== false) {
+    define('DB_PASSWORD', getenv('DB_PASSWORD'));
 }
-if (getenv('_JENV_DB_NAME') !== false) {
-    define('_JENV_DB_NAME', getenv('_JENV_DB_NAME'));
+if (getenv('DB_NAME') !== false) {
+    define('DB_NAME', getenv('DB_NAME'));
 }
 
 /**
