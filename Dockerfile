@@ -28,6 +28,9 @@ COPY configuration.php.render /var/www/html/configuration.php
 # Crea un file phpinfo.php direttamente nel container
 RUN echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 
+# Copia il file di test index.php
+COPY test_index.php /var/www/html/index.php
+
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language /tmp/joomla_logs && \
     chmod -R 755 /var/www/html /tmp/joomla_logs && \
@@ -40,8 +43,6 @@ RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_input_vars = 3000" >> /usr/local/etc/php/conf.d/joomla.ini
-    
-COPY test_index.php /var/www/html/index.php
 
 # Imposta la variabile d'ambiente PORT
 ENV PORT 10000
@@ -55,6 +56,9 @@ RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/a
 # Abilita il display degli errori per il debug
 RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Assicurati che mod_php sia abilitato
+RUN a2enmod php
 
 # Avvia Apache in foreground
 CMD ["apache2-foreground"]
