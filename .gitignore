@@ -1,10 +1,62 @@
+# Ignore everything in the root except the "wp-content" directory.
+/*
+!.gitignore
+!index.php
+!README.md
+!LICENSE.txt
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except:
+# "mu-plugins", "plugins", "themes" directory
+wp-content/*
+!wp-content/mu-plugins/
+!wp-content/plugins/
+!wp-content/themes/
+
+# Ignore these files specifically
 configuration.php
+.htaccess
+web.config
+
+# Ignore all files starting with . or ~
+.*
+~*
+
+# Ignore node dependency directories
+node_modules/
+
+# Ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Ignore OS generated files
+ehthumbs.db
+Thumbs.db
+
+# Ignore specific Joomla files/folders
 /administrator/cache/*
 /cache/*
 /logs/*
 /tmp/*
-/cache/*
-/tmp/*
-/logs/*
-.htaccess
+/configuration.php
+/robots.txt
 .DS_Store
