@@ -10,22 +10,6 @@ class JConfig {
     public $list_limit = 20;
     public $access = 1;
     public $debug = true;
-    public $log_path = '/tmp/joomla_logs';
-    public $debug_lang = false;
-    public $debug_lang_const = true;
-    public $dbtype = 'pgsql';
-    public $host = '';<?php
-class JConfig {
-    public $offline = false;
-    public $offline_message = 'Sito fuori servizio per manutenzione.<br> Riprovare più tardi.';
-    public $display_offline_message = 1;
-    public $offline_image = '';
-    public $sitename = 'Smart TP';
-    public $editor = 'tinymce';
-    public $captcha = '0';
-    public $list_limit = 20;
-    public $access = 1;
-    public $debug = true;
     public $debug_lang = false;
     public $debug_lang_const = true;
     public $dbtype = 'pgsql';
