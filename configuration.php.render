@@ -14,11 +14,11 @@ class JConfig {
     public $log_everything = true;
     public $debug_lang = false;
     public $debug_lang_const = true;
+      public $dbtype = 'pgsql';
     public $host = '';
     public $user = '';
     public $password = '';
     public $db = '';
-    public $dbtype = 'pgsql';
     public $dbprefix = 'x6uws_';
     public $dbencryption = 0;
     public $dbsslverifyservercert = false;
@@ -65,13 +65,13 @@ class JConfig {
     public $shared_session = false;
     public $session_metadata = true;
 
-       public function __construct() {
+   public function __construct() {
         $this->host = getenv('DB_HOST') ?: '';
         $this->user = getenv('DB_USER') ?: '';
         $this->password = getenv('DB_PASSWORD') ?: '';
         $this->db = getenv('DB_NAME') ?: '';
 
-        // Spostiamo la configurazione dell'error reporting qui
+        // Configurazione dell'error reporting
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
         ini_set('log_errors', 1);

@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql mysqli zip opcache mbstring
 
+# Installa l'estensione PostgreSQL
+RUN docker-php-ext-install pgsql
+
 # Abilita i moduli Apache necessari
 RUN a2enmod rewrite headers
 
