@@ -47,5 +47,8 @@ EXPOSE $PORT
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 # Avvia Apache in foreground
+# Abilita il display degli errori per il debug
+RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 CMD ["apache2-foreground"]
 

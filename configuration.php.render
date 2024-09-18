@@ -12,10 +12,10 @@ class JConfig {
     public $debug = false;
     public $debug_lang = false;
     public $debug_lang_const = true;
-    public $host = getenv('DB_HOST');
-    public $user = getenv('DB_USER');
-    public $password = getenv('DB_PASSWORD');
-    public $db = getenv('DB_NAME');
+    public $host = '';
+    public $user = '';
+    public $password = '';
+    public $db = '';
     public $dbtype = 'pgsql';
     public $dbprefix = 'x6uws_';
     public $dbencryption = 0;
@@ -62,4 +62,11 @@ class JConfig {
     public $session_handler = 'database';
     public $shared_session = false;
     public $session_metadata = true;
+
+    public function __construct() {
+        $this->host = getenv('DB_HOST') ?: '';
+        $this->user = getenv('DB_USER') ?: '';
+        $this->password = getenv('DB_PASSWORD') ?: '';
+        $this->db = getenv('DB_NAME') ?: '';
+    }
 }
