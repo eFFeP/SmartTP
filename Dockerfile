@@ -42,3 +42,4 @@ EXPOSE 80
 
 # Avvia Apache in foreground
 CMD ["apache2-foreground"]
+# Fine
