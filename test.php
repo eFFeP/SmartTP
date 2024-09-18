@@ -30,3 +30,12 @@ try {
     echo "Errore di connessione: " . $e->getMessage();
 }
 ?>
+
+try {
+    $pdo = new PDO($dsn);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connessione al database riuscita!";
+} catch (PDOException $e) {
+    echo "Errore di connessione: " . $e->getMessage();
+}
+?>
