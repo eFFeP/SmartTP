@@ -37,9 +37,15 @@ RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_input_vars = 3000" >> /usr/local/etc/php/conf.d/joomla.ini
 
-# Esponi la porta 80
-EXPOSE 80
+# Imposta la variabile d'ambiente PORT
+ENV PORT 80
+
+# Esponi la porta
+EXPOSE $PORT
+
+# Configura Apache per usare la porta specificata
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 # Avvia Apache in foreground
 CMD ["apache2-foreground"]
-# Fine
+
