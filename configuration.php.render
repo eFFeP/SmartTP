@@ -9,9 +9,7 @@ class JConfig {
     public $captcha = '0';
     public $list_limit = 20;
     public $access = 1;
-    public $debug = true;
-    public $log_path = '/tmp/joomla_logs';
-    public $log_everything = true;
+    public $debug = false;
     public $debug_lang = false;
     public $debug_lang_const = true;
     public $dbtype = 'pgsql';
@@ -64,6 +62,7 @@ class JConfig {
     public $session_handler = 'database';
     public $shared_session = false;
     public $session_metadata = true;
+
     public function __construct() {
         $db_url = getenv('DB_HOST');
         if ($db_url) {
@@ -73,11 +72,5 @@ class JConfig {
             $this->password = $url_parts['pass'];
             $this->db = ltrim($url_parts['path'], '/');
         }
-
-        // Configurazione dell'error reporting
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-        ini_set('log_errors', 1);
-        ini_set('error_log', $this->log_path . '/php_errors.log');
     }
 }
