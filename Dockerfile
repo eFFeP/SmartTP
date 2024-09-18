@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y \
 
 # Configura e installa le estensioni PHP necessarie
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql mysqli 
-zip opcache mbstring
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_pgsql mysqli zip opcache mbstring
 
 # Abilita i moduli Apache necessari
 RUN a2enmod rewrite headers
