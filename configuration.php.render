@@ -9,10 +9,8 @@ class JConfig {
     public $captcha = '0';
     public $list_limit = 20;
     public $access = 1;
-    public $debug = false;
-    public $error_reporting = 'default';
-    public $debug_lang = false;
-    public $debug_lang_const = true;
+    public $debug = true;
+    public $error_reporting = 'maximum';
     public $dbtype = 'pgsql';
     public $host = '';
     public $user = '';
@@ -62,15 +60,15 @@ class JConfig {
     public $session_handler = 'database';
     public $shared_session = false;
     public $session_metadata = true;
+    public function __construct() {
+        $this->host = getenv('DB_HOST') ?: '';
+        $this->user = getenv('DB_USER') ?: '';
+        $this->password = getenv('DB_PASSWORD') ?: '';
+        $this->db = getenv('DB_NAME') ?: '';
 
-      public function __construct() {
-        $db_url = getenv('DB_HOST');
-        if ($db_url) {
-            $url_parts = parse_url($db_url);
-            $this->host = $url_parts['host'];
-            $this->user = $url_parts['user'];
-            $this->password = $url_parts['pass'];
-            $this->db = ltrim($url_parts['path'], '/');
-        }
+        // Abilita la visualizzazione degli errori
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
     }
 }

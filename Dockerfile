@@ -25,12 +25,15 @@ COPY . /var/www/html/
 # Copia il file di configurazione per Render
 COPY configuration.php.render /var/www/html/configuration.php
 
+# Copia il file di diagnostica
+COPY diagnostica.php /var/www/html/diagnostica.php
+
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
     chmod -R 755 /var/www/html && \
     chown -R www-data:www-data /var/www/html && \
     chmod 644 /var/www/html/configuration.php
-
+    
 # Configura PHP per Joomla
 RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
