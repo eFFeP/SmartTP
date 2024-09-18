@@ -10,7 +10,6 @@ class JConfig {
     public $list_limit = 20;
     public $access = 1;
     public $debug = true;
-    public $error_reporting = 'maximum';
     public $log_path = '/tmp/joomla_logs';
     public $log_everything = true;
     public $debug_lang = false;
@@ -66,12 +65,13 @@ class JConfig {
     public $shared_session = false;
     public $session_metadata = true;
 
-    public function __construct() {
+       public function __construct() {
         $this->host = getenv('DB_HOST') ?: '';
         $this->user = getenv('DB_USER') ?: '';
         $this->password = getenv('DB_PASSWORD') ?: '';
         $this->db = getenv('DB_NAME') ?: '';
 
+        // Spostiamo la configurazione dell'error reporting qui
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
         ini_set('log_errors', 1);

@@ -29,9 +29,9 @@ COPY configuration.php.render /var/www/html/configuration.php
 RUN echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 
 # Crea le cartelle necessarie e imposta i permessi
-RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
-    chmod -R 755 /var/www/html && \
-    chown -R www-data:www-data /var/www/html && \
+RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language /tmp/joomla_logs && \
+    chmod -R 755 /var/www/html /tmp/joomla_logs && \
+    chown -R www-data:www-data /var/www/html /tmp/joomla_logs && \
     chmod 644 /var/www/html/configuration.php
 
 # Configura PHP per Joomla
@@ -40,6 +40,8 @@ RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/joomla.ini \
     && echo "max_input_vars = 3000" >> /usr/local/etc/php/conf.d/joomla.ini
+    
+COPY test_index.php /var/www/html/index.php
 
 # Imposta la variabile d'ambiente PORT
 ENV PORT 10000
