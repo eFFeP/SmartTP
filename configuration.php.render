@@ -61,10 +61,14 @@ class JConfig {
     public $shared_session = false;
     public $session_metadata = true;
     public function __construct() {
-        $this->host = getenv('DB_HOST') ?: '';
-        $this->user = getenv('DB_USER') ?: '';
-        $this->password = getenv('DB_PASSWORD') ?: '';
-        $this->db = getenv('DB_NAME') ?: '';
+        $db_url = getenv('DB_HOST');
+        if ($db_url) {
+            $url_parts = parse_url($db_url);
+            $this->host = $url_parts['host'];
+            $this->user = getenv('DB_USER');
+            $this->password = getenv('DB_PASSWORD');
+            $this->db = getenv('DB_NAME');
+        }
 
         // Abilita la visualizzazione degli errori
         ini_set('display_errors', 1);

@@ -13,6 +13,7 @@ echo "DB_HOST: " . (getenv('DB_HOST') ?: 'non impostato') . "<br>";
 echo "DB_USER: " . (getenv('DB_USER') ?: 'non impostato') . "<br>";
 echo "DB_PASSWORD: " . (getenv('DB_PASSWORD') ? 'impostato' : 'non impostato') . "<br>";
 echo "DB_NAME: " . (getenv('DB_NAME') ?: 'non impostato') . "<br>";
+echo "DB_PORT: " . (getenv('DB_PORT') ?: 'non impostato') . "<br>";
 
 // Verifica se il file di configurazione esiste
 if (file_exists('configuration.php')) {
@@ -33,6 +34,7 @@ if (file_exists('configuration.php')) {
         echo "Database type: " . $config->dbtype . "<br>";
         echo "Database host: " . $config->host . "<br>";
         echo "Database name: " . $config->db . "<br>";
+        echo "Database user: " . $config->user . "<br>";
     } else {
         echo "Errore: Classe JConfig non trovata.<br>";
     }
@@ -42,8 +44,9 @@ if (file_exists('configuration.php')) {
 
 // Verifica la connessione al database
 if (isset($config)) {
+    echo "Tentativo di connessione al database:<br>";
     try {
-        $dsn = "{$config->dbtype}:host={$config->host};dbname={$config->db}";
+        $dsn = "{$config->dbtype}:host={$config->host};dbname={$config->db};port=" . getenv('DB_PORT');
         $pdo = new PDO($dsn, $config->user, $config->password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Connessione al database riuscita.<br>";
