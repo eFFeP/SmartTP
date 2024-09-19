@@ -1,13 +1,17 @@
 <?php
 
-/**
- * Joomla! Content Management System
- *
- * @copyright   (C) 2018 Open Source Matters, Inc. <https://www.joomla.org>
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 namespace Joomla\CMS\Service\Provider;
+
+use Joomla\DI\Container;
+use Joomla\DI\ServiceProviderInterface;
+
+/**
+ * Service provider for the application's session dependency
+ *
+ * @since  4.0.0
+ */
+class JoomlaSessionProvider implements ServiceProviderInterface
+{
 
 use Joomla\CMS\Application\AdministratorApplication;
 use Joomla\CMS\Application\ConsoleApplication;

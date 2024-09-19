@@ -34,11 +34,13 @@ if (!defined('_JDEFINES')) {
 
 require_once JPATH_BASE . '/includes/framework.php';
 
+
 // Ensure the container is created
 $container = \Joomla\CMS\Factory::getContainer();
 
 // Manually register the session service provider
-$container->registerServiceProvider(new \Joomla\CMS\Service\Provider\Session);
+$container->registerServiceProvider(new \Joomla\CMS\Service\Provider\JoomlaSessionProvider);
+
 
 // Get the application
 try {
