@@ -1,8 +1,11 @@
 <?php
-// Abilita il reporting degli errori
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+   ini_set('display_errors', 1);
+   ini_set('display_startup_errors', 1);
+   error_reporting(E_ALL);
+
+   // Logging degli errori
+   ini_set('log_errors', 1);
+   ini_set('error_log', '/tmp/php-errors.log');
 
 // Define the application's minimum supported PHP version as a constant so it can be referenced within the application.
 define('JOOMLA_MINIMUM_PHP', '8.1.0');

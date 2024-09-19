@@ -36,6 +36,7 @@ use Joomla\Session\Storage\RuntimeStorage;
  * @since  4.0.0
  */
 class JoomlaSessionProvider implements ServiceProviderInterface
+{
     /**
      * Registers the service provider with a DI container.
      *

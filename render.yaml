@@ -2,7 +2,9 @@ services:
   - type: web
     name: joomla
     env: php
-    buildCommand: composer install --no-interaction --no-dev --prefer-dist
+    buildCommand: |
+      composer install --no-interaction --no-dev --prefer-dist
+      cp configuration.php.render configuration.php
     startCommand: vendor/bin/heroku-php-apache2
     envVars:
       - key: DB_HOST
@@ -21,3 +23,7 @@ services:
         fromDatabase:
           name: joomla-db
           property: database
+buildCommand: |
+  docker-php-ext-install pdo_pgsql
+  composer install --no-interaction --no-dev --prefer-dist
+  cp configuration.php.render configuration.php
