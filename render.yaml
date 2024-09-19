@@ -3,8 +3,11 @@ services:
     name: joomla
     env: php
     buildCommand: |
+      docker-php-ext-install pdo_pgsql
       composer install --no-interaction --no-dev --prefer-dist
       cp configuration.php.render configuration.php
+      mkdir -p tmp logs administrator/logs language
+      chmod -R 755 tmp logs administrator/logs language
     startCommand: vendor/bin/heroku-php-apache2
     envVars:
       - key: DB_HOST
@@ -23,7 +26,3 @@ services:
         fromDatabase:
           name: joomla-db
           property: database
-buildCommand: |
-  docker-php-ext-install pdo_pgsql
-  composer install --no-interaction --no-dev --prefer-dist
-  cp configuration.php.render configuration.php

@@ -38,6 +38,7 @@ if (!defined('_JDEFINES')) {
 require_once JPATH_BASE . '/includes/framework.php';
 
 
+
 // Ensure the container is created
 $container = \Joomla\CMS\Factory::getContainer();
 
