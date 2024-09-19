@@ -2,17 +2,6 @@
 
 namespace Joomla\CMS\Service\Provider;
 
-use Joomla\DI\Container;
-use Joomla\DI\ServiceProviderInterface;
-
-/**
- * Service provider for the application's session dependency
- *
- * @since  4.0.0
- */
-class JoomlaSessionProvider implements ServiceProviderInterface
-{
-
 use Joomla\CMS\Application\AdministratorApplication;
 use Joomla\CMS\Application\ConsoleApplication;
 use Joomla\CMS\Application\SiteApplication;
@@ -46,8 +35,7 @@ use Joomla\Session\Storage\RuntimeStorage;
  *
  * @since  4.0.0
  */
-class Session implements ServiceProviderInterface
-{
+class JoomlaSessionProvider implements ServiceProviderInterface
     /**
      * Registers the service provider with a DI container.
      *
