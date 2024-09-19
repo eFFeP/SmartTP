@@ -52,8 +52,10 @@ class JConfig {
     public $log_path = '/var/www/html/administrator/logs';
     public $tmp_path = '/var/www/html/tmp';
     public $lifetime = 15;
+    
     public $session_handler = 'database';
     public $shared_session = false;
+    public $session_metadata = true;
 
     public function __construct() {
         $db_url = getenv('DB_HOST');

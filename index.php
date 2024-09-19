@@ -1,10 +1,8 @@
 <?php
-/**
- * @package    Joomla.Site
- *
- * @copyright  (C) 2005 Open Source Matters, Inc. <https://www.joomla.org>
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
- */
+// Abilita il reporting degli errori
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Define the application's minimum supported PHP version as a constant so it can be referenced within the application.
 define('JOOMLA_MINIMUM_PHP', '8.1.0');
@@ -18,10 +16,6 @@ if (version_compare(PHP_VERSION, JOOMLA_MINIMUM_PHP, '<')) {
         )
     );
 }
-
-// Saves the start time and memory usage.
-$startTime = microtime(1);
-$startMem  = memory_get_usage();
 
 /**
  * Constant that is checked in included files to prevent direct access.
@@ -40,22 +34,27 @@ if (!defined('_JDEFINES')) {
 
 require_once JPATH_BASE . '/includes/framework.php';
 
-// Set profiler start time and memory usage and mark afterLoad in the profiler.
-JDEBUG ? \Joomla\CMS\Profiler\Profiler::getInstance('Application')->setStart($startTime, $startMem)->mark('afterLoad') : null;
-
-// Boot the DI container
+// Ensure the container is created
 $container = \Joomla\CMS\Factory::getContainer();
 
-/*
- * Here we are adding the dependency injection container and the application
- * instance to the JFactory class. This allows us to use it in our application.
- */
-\Joomla\CMS\Factory::$container = $container;
+// Manually register the session service provider
+$container->registerServiceProvider(new \Joomla\CMS\Service\Provider\Session);
 
-$app = $container->get(\Joomla\CMS\Application\SiteApplication::class);
+// Get the application
+try {
+    $app = $container->get(\Joomla\CMS\Application\SiteApplication::class);
 
-// Set the application as global app
-\Joomla\CMS\Factory::$application = $app;
+    // Set the application as global app
+    \Joomla\CMS\Factory::$application = $app;
 
-// Execute the application
-$app->execute();
+    // Execute the application
+    $app->execute();
+} catch (\Throwable $e) {
+    // Catch any errors and display them
+    echo '<h1>An error occurred</h1>';
+    echo '<p>Error message: ' . $e->getMessage() . '</p>';
+    echo '<p>File: ' . $e->getFile() . '</p>';
+    echo '<p>Line: ' . $e->getLine() . '</p>';
+    echo '<h2>Stack trace:</h2>';
+    echo '<pre>' . $e->getTraceAsString() . '</pre>';
+}

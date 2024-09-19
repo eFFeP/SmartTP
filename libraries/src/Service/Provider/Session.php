@@ -20,6 +20,7 @@ use Joomla\CMS\Session\MetadataManager;
 use Joomla\CMS\Session\SessionFactory;
 use Joomla\CMS\Session\SessionManager;
 use Joomla\CMS\Session\Storage\JoomlaStorage;
+use Joomla\CMS\Session\Session;
 use Joomla\Database\DatabaseInterface;
 use Joomla\DI\Container;
 use Joomla\DI\Exception\DependencyResolutionException;
@@ -28,6 +29,7 @@ use Joomla\Event\DispatcherInterface;
 use Joomla\Event\LazyServiceEventListener;
 use Joomla\Registry\Registry;
 use Joomla\Session\HandlerInterface;
+use Joomla\Session\SessionInterface;
 use Joomla\Session\SessionEvents;
 use Joomla\Session\Storage\RuntimeStorage;
 
