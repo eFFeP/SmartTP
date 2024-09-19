@@ -5,6 +5,7 @@ services:
     buildCommand: |
       docker-php-ext-install pdo_pgsql
       composer install --no-interaction --no-dev --prefer-dist
+      composer dump-autoload -o
       cp configuration.php.render configuration.php
       mkdir -p tmp logs administrator/logs language
       chmod -R 755 tmp logs administrator/logs language

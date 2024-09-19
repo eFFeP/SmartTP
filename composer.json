@@ -17,5 +17,13 @@
         "psr-4": {
             "Joomla\\CMS\\": "libraries/src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php -r \"@mkdir('tmp', 0755);\"",
+            "php -r \"@mkdir('logs', 0755);\"",
+            "php -r \"@mkdir('administrator/logs', 0755);\"",
+            "php -r \"@mkdir('language', 0755);\""
+        ]
     }
 }
