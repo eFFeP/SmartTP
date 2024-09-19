@@ -53,6 +53,12 @@ foreach ($_ENV as $key => $value) {
 }
 echo "</pre>";
 
+// Mostra il contenuto del file configuration.php
+echo "<h2>Contenuto di configuration.php:</h2>";
+echo "<pre>";
+highlight_file('configuration.php');
+echo "</pre>";
+
 // Mostra informazioni su PHP
 phpinfo();
 ?>
