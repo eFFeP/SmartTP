@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: joomla
+    env: php
+    buildCommand: cd joomla && composer install --no-interaction --no-dev --prefer-dist
+    startCommand: vendor/bin/heroku-php-apache2 joomla/
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: joomla-db
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: joomla-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: joomla-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: joomla-db
+          property: database
