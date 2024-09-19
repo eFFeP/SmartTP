@@ -9,7 +9,8 @@ class JConfig {
     public $captcha = '0';
     public $list_limit = 20;
     public $access = 1;
-    public $debug = false;
+     public $debug = true;
+    public $error_reporting = 'maximum';
     public $debug_lang = false;
     public $debug_lang_const = true;
     public $dbtype = 'pgsql';
@@ -64,5 +65,10 @@ class JConfig {
             $this->password = getenv('DB_PASSWORD') ?: $url_parts['pass'];
             $this->db = getenv('DB_NAME') ?: ltrim($url_parts['path'], '/');
         }
+
+        // Abilita il logging degli errori
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
     }
 }

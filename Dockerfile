@@ -19,11 +19,15 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Abilita i moduli Apache necessari
 RUN a2enmod rewrite headers
 
-# Copia i file di Joomla nella directory del server web
+ Copia i file di Joomla nella directory del server web
 COPY . /var/www/html/
 
 # Copia il file di configurazione per Render
 COPY configuration.php.render /var/www/html/configuration.php
+
+# Copia i file di test e diagnostica
+COPY test_db.php /var/www/html/test_db.php
+COPY error_display.php /var/www/html/error_display.php
 
 # Crea le cartelle necessarie e imposta i permessi
 RUN mkdir -p /var/www/html/tmp /var/www/html/logs /var/www/html/administrator/logs /var/www/html/language && \
